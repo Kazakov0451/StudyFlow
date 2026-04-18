@@ -8,7 +8,9 @@ load_dotenv()
 
 DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://user:password@localhost:5432/studyflow")
 
-engine = create_engine(DATABASE_URL)
+# Добавляем параметр client_encoding для правильной работы с UTF-8
+engine = create_engine(DATABASE_URL, connect_args={"client_encoding": "utf8"})
+
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 Base = declarative_base()
