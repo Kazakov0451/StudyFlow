@@ -4,19 +4,12 @@ export enum TaskStatus {
   COMPLETED = 'completed'
 }
 
-export enum TaskPriority {
-  HIGH = 'high',
-  MEDIUM = 'medium',
-  LOW = 'low'
-}
-
 export interface Task {
   id: number;
   title: string;
   description: string | null;
   deadline: string | null;
   status: TaskStatus;
-  priority: TaskPriority;
   created_at: string;
   updated_at: string | null;
 }
@@ -26,7 +19,6 @@ export interface TaskCreate {
   description?: string;
   deadline?: string;
   status?: TaskStatus;
-  priority?: TaskPriority;
 }
 
 export interface TaskUpdate {
@@ -34,5 +26,4 @@ export interface TaskUpdate {
   description?: string;
   deadline?: string;
   status?: TaskStatus;
-  priority?: TaskPriority;
 }
