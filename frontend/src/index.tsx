@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import Board from './components/Board';
+import { ToastProvider } from './components/Toast';
 import './index.css';
 
 const root = ReactDOM.createRoot(
@@ -8,6 +9,8 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <Board />
+    <ToastProvider>
+      <Board />
+    </ToastProvider>
   </React.StrictMode>
 );
