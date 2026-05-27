@@ -53,6 +53,20 @@ const Board: React.FC = () => {
     useSensor(PointerSensor, { activationConstraint: { distance: 8 } })
   );
 
+  // Handle Escape key to close modals
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setShowForm(false);
+        setEditingTask(null);
+        setSelectedTask(null);
+        setDeletingTask(null);
+      }
+    };
+    window.addEventListener('keydown', handleEscape);
+    return () => window.removeEventListener('keydown', handleEscape);
+  }, []);
+
   const fetchTasks = async () => {
     try {
       setLoading(true);
@@ -136,8 +150,19 @@ const Board: React.FC = () => {
 
   const hasActiveFilters = searchQuery || filterStatus !== 'all' || filterPriority !== 'all';
 
-  if (loading) return <div className="loading">Загрузка...</div>;
-  if (error) return <div className="error">{error}</div>;
+  if (loading) return (
+    <div className="loading-container">
+      <div className="loading-spinner"></div>
+      <p>Загрузка задач...</p>
+    </div>
+  );
+  if (error) return (
+    <div className="error-container">
+      <div className="error-icon">⚠️</div>
+      <p>{error}</p>
+      <button className="btn-primary" onClick={fetchTasks}>Попробовать снова</button>
+    </div>
+  );
 
   return (
     <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
@@ -150,8 +175,8 @@ const Board: React.FC = () => {
             </button>
           </div>
           <div className="header-actions">
-            <button className={`btn-secondary ${showStats ? 'active' : ''}`} onClick={() => setShowStats(!showStats)}>📊 Статистика</button>
-            <button className="btn-primary" onClick={() => setShowForm(true)}>+ Новая задача</button>
+            <button className={`btn-secondary ${showStats ? 'active' : ''}`} onClick={() => setShowStats(!showStats)} aria-label="Показать/скрыть статистику">📊 Статистика</button>
+            <button className="btn-primary" onClick={() => setShowForm(true)} aria-label="Создать новую задачу">+ Новая задача</button>
           </div>
         </div>
 

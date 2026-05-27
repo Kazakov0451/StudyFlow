@@ -628,25 +628,49 @@
   background: #718096;
 }
 
-.loading, .error {
+.loading-container, .error-container {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 200px;
+  height: 100vh;
+  gap: 16px;
   font-size: 16px;
   color: #4a5568;
 }
 
-.error {
-  color: #fc8181;
+.error-container {
+  color: #4a5568;
 }
 
-.board.dark .loading {
+.error-icon {
+  font-size: 48px;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e2e8f0;
+  border-top-color: #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.board.dark .loading-container {
   color: #a0aec0;
 }
 
-.board.dark .error {
-  color: #fc8181;
+.board.dark .loading-spinner {
+  border-color: #4a5568;
+  border-top-color: #667eea;
+}
+
+.board.dark .error-container {
+  color: #e2e8f0;
 }
 
 /* Task Detail Modal */
@@ -879,4 +903,72 @@
 @keyframes slideUp {
   from { transform: translateY(20px); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .columns {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .board {
+    padding: 16px;
+  }
+  
+  .board-header {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  
+  .header-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+  
+  .columns {
+    grid-template-columns: 1fr;
+  }
+  
+  .toolbar {
+    flex-direction: column;
+  }
+  
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .filter-select {
+    width: 100%;
+  }
+  
+  .modal {
+    max-width: calc(100vw - 32px);
+    margin: 16px;
+  }
+  
+  .statistics h2 {
+    font-size: 18px;
+  }
+  
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .board-header h1 {
+    font-size: 22px;
+  }
+  
+  .column-header h2 {
+    font-size: 14px;
+  }
 }

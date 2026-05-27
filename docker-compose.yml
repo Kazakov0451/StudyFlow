@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: studyflow-frontend
+    ports:
+      - "3000:80"
+    restart: unless-stopped
+    networks:
+      - studyflow-network
+
+networks:
+  studyflow-network:
+    driver: bridge
