@@ -15,8 +15,6 @@ StudyFlow — это веб-приложение для студентов, пр
 - Казакое Егор Сергеевч, ЭУ-230, GitHub: `Kazakov0451`
 - Новоселов Антон Юрьевич, ЭУ-230, GitHub: `AYNovoselov`
 
-## Запуск
-- [README](./backend/README.md)
-
 ## Документация
 - [Техническое задание](./Техническое%20задание.md)
+- [Frontend README](./frontend/README.md)
