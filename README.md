@@ -17,4 +17,5 @@ StudyFlow — это веб-приложение для студентов, пр
 
 ## Документация
 - [Техническое задание](./Техническое%20задание.md)
+- [Backend README](./backend/README.md)
 - [Frontend README](./frontend/README.md)
