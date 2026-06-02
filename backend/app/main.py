@@ -31,20 +31,9 @@ def read_tasks(
     skip: int = 0,
     limit: int = 100,
     status: Optional[str] = None,
-    search: Optional[str] = None,
-    sort_by: Optional[str] = None,
-    order: Optional[str] = None,
     db: Session = Depends(get_db)
 ):
-    tasks = crud.get_tasks(
-        db,
-        skip=skip,
-        limit=limit,
-        status=status,
-        search=search,
-        sort_by=sort_by,
-        order=order
-    )
+    tasks = crud.get_tasks(db, skip=skip, limit=limit, status=status)
     return tasks
 
 @app.get("/tasks/{task_id}", response_model=schemas.TaskResponse)
@@ -75,7 +64,3 @@ def delete_task(task_id: int, db: Session = Depends(get_db)):
     if db_task is None:
         raise HTTPException(status_code=404, detail="Task not found")
     return {"message": "Task deleted successfully"}
-
-@app.get("/tasks/stats")
-def get_tasks_stats(db: Session = Depends(get_db)):
-    return crud.get_task_stats(db)

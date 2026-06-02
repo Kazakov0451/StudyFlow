@@ -30,40 +30,11 @@ uvicorn app.main:app --reload
 | Метод | Endpoint | Описание |
 |-------|----------|----------|
 | GET | `/` | Приветственное сообщение |
-| GET | `/tasks` | Получить список задач (с фильтрацией, поиском, сортировкой) |
-| GET | `/tasks/stats` | Получить статистику по статусам задач |
+| GET | `/tasks` | Получить список задач (с фильтрацией по статусу) |
 | GET | `/tasks/{id}` | Получить задачу по ID |
 | POST | `/tasks` | Создать новую задачу |
 | PUT | `/tasks/{id}` | Обновить задачу |
 | DELETE | `/tasks/{id}` | Удалить задачу |
-
-### Параметры GET /tasks
-
-| Параметр | Тип | Описание |
-|----------|-----|----------|
-| `skip` | int | Пропустить N задач (пагинация) |
-| `limit` | int | Максимальное количество задач |
-| `status` | str | Фильтр по статусу (pending/in_progress/completed) |
-| `search` | str | Поиск по названию задачи |
-| `sort_by` | str | Сортировка по полю (deadline/created_at/status/title) |
-| `order` | str | Порядок сортировки (asc/desc) |
-
-## Тестирование
-
-Запуск тестов:
-```bash
-pip install pytest
-pytest app/tests/
-```
-
-## Docker
-
-Запуск с помощью docker-compose:
-```bash
-docker-compose up -d
-```
-
-Backend будет доступен по адресу: http://localhost:8000
 
 ## Документация API
 
